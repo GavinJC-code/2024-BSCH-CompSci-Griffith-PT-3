@@ -1,26 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 using UnityEngine;
 
 public class FG_RangedEnemy : MonoBehaviour
 {
-    [Header("Attack Parameters")]
-    [SerializeField] private float attackCooldown;
+    [Header("Attack Parameters")] [SerializeField]
+    private float attackCooldown;
+
     [SerializeField] private float range;
     [SerializeField] private int damage;
 
-    [Header("Ranged Attack")]
-    [SerializeField] private Transform firepoint;
+    [Header("Ranged Attack")] [SerializeField]
+    private Transform firepoint;
+
     [SerializeField] private GameObject[] fireballs;
 
-    [Header("Collider Parameters")]
-    [SerializeField] private float colliderDistance;
+    [Header("Collider Parameters")] [SerializeField]
+    private float colliderDistance;
+
     [SerializeField] private CapsuleCollider2D boxCollider;
 
-    [Header("Player Layer")]
-    [SerializeField] private LayerMask playerLayer;
+    [Header("Player Layer")] [SerializeField]
+    private LayerMask playerLayer;
+
     private float cooldownTimer = Mathf.Infinity;
 
     //References
@@ -57,6 +60,7 @@ public class FG_RangedEnemy : MonoBehaviour
         fireballs[FindFireball()].transform.position = firepoint.position;
         fireballs[FindFireball()].GetComponent<FG_EnemyProjectile>().ActivateProjectile();
     }
+
     private int FindFireball()
     {
         for (int i = 0; i < fireballs.Length; i++)
@@ -64,6 +68,7 @@ public class FG_RangedEnemy : MonoBehaviour
             if (!fireballs[i].activeInHierarchy)
                 return i;
         }
+
         return 0;
     }
 
@@ -72,26 +77,27 @@ public class FG_RangedEnemy : MonoBehaviour
         //debug log player in stight
         Debug.Log("Player in sight");
         RaycastHit2D hit =
-            Physics2D.BoxCast(boxCollider.bounds.center + transform.right * range * transform.localScale.x * colliderDistance,
-            new Vector3(boxCollider.bounds.size.x * range, boxCollider.bounds.size.y, boxCollider.bounds.size.z),
-            0, Vector2.left, 0, playerLayer);
+            Physics2D.BoxCast(
+                boxCollider.bounds.center + transform.right * range * transform.localScale.x * colliderDistance,
+                new Vector3(boxCollider.bounds.size.x * range, boxCollider.bounds.size.y, boxCollider.bounds.size.z),
+                0, Vector2.left, 0, playerLayer);
 
         return hit.collider != null;
     }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(boxCollider.bounds.center + transform.right * range * transform.localScale.x * colliderDistance,
+        Gizmos.DrawWireCube(
+            boxCollider.bounds.center + transform.right * range * transform.localScale.x * colliderDistance,
             new Vector3(boxCollider.bounds.size.x * range, boxCollider.bounds.size.y, boxCollider.bounds.size.z));
     }
-    
+
     protected void OnTriggerEnter2D(Collider2D collision)
-   {
-      if (collision.CompareTag("Player"))
-      {
-         collision.GetComponent<FG_Health>().TakeDamage(damage);
-      }
-   }
-
-
+    {
+        if (collision.CompareTag("Player"))
+        {
+            collision.GetComponent<FG_Health>().TakeDamage(damage);
+        }
+    }
 }

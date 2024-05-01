@@ -11,10 +11,11 @@ public class Room : MonoBehaviour
         initialPosition = new Vector3[enemies.Length];
         for (int i = 0; i < enemies.Length; i++)
         {
-            if(enemies[i] != null)
+            if (enemies[i] != null)
                 initialPosition[i] = enemies[i].transform.position;
         }
     }
+
     public void ActivateRoom(bool _status)
     {
         //Activate/deactivate enemies

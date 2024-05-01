@@ -43,6 +43,8 @@ public class FG_EnemyProjectile : FG_EnemyDamage // will damage the player when 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        
+
         hit = true;
         base.OnTriggerEnter2D(collision); // execute parent script first
         collider.enabled = false;

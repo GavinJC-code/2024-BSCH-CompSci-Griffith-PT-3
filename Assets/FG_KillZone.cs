@@ -5,7 +5,7 @@ using UnityEngine;
 public class FG_KillZone : MonoBehaviour
 {
     // Reference to the Panel that needs to be enabled
-    
+
 
     private void OnTriggerEnter2D(Collider2D col)
     {
@@ -16,7 +16,6 @@ public class FG_KillZone : MonoBehaviour
 
             // Log that the player is in the killzone
             Debug.Log("In the killzone");
-
         }
     }
 }

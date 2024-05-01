@@ -169,7 +169,7 @@ public class fg_playerMovement : MonoBehaviour
     {
         // Reduce the collider's height by 50% and adjust the offset downward
         capsuleCollider.size = new Vector2(originalSize.x, originalSize.y / 2);
-        capsuleCollider.offset = new Vector2(originalOffset.x, originalOffset.y - originalSize.y / 4);
+        capsuleCollider.offset = new Vector2(originalOffset.x, originalOffset.y - originalSize.y / 4.5f );
     }
     else
     {

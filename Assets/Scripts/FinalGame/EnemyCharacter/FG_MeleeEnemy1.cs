@@ -2,17 +2,20 @@ using UnityEngine;
 
 public class FG_MeleeEnemyExercises : MonoBehaviour
 {
-    [Header ("Attack Parameters")]
-    [SerializeField] private float attackCooldown;
+    [Header("Attack Parameters")] [SerializeField]
+    private float attackCooldown;
+
     [SerializeField] private float range;
     [SerializeField] private int damage;
 
-    [Header("Collider Parameters")]
-    [SerializeField] private float colliderDistance;
+    [Header("Collider Parameters")] [SerializeField]
+    private float colliderDistance;
+
     [SerializeField] private CapsuleCollider2D boxCollider;
 
-    [Header("Player Layer")]
-    [SerializeField] private LayerMask playerLayer;
+    [Header("Player Layer")] [SerializeField]
+    private LayerMask playerLayer;
+
     private float cooldownTimer = Mathf.Infinity;
 
     //References
@@ -21,7 +24,7 @@ public class FG_MeleeEnemyExercises : MonoBehaviour
     private FG_EnemyPatrol enemyPatrol;
 
     public GameManagerScript gameManager;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -54,20 +57,23 @@ public class FG_MeleeEnemyExercises : MonoBehaviour
 
     private bool PlayerInSight()
     {
-        RaycastHit2D hit = 
-            Physics2D.BoxCast(boxCollider.bounds.center + transform.right * range * transform.localScale.x * colliderDistance,
-            new Vector3(boxCollider.bounds.size.x * range, boxCollider.bounds.size.y, boxCollider.bounds.size.z),
-            0, Vector2.left, 0, playerLayer);
+        RaycastHit2D hit =
+            Physics2D.BoxCast(
+                boxCollider.bounds.center + transform.right * range * transform.localScale.x * colliderDistance,
+                new Vector3(boxCollider.bounds.size.x * range, boxCollider.bounds.size.y, boxCollider.bounds.size.z),
+                0, Vector2.left, 0, playerLayer);
 
         if (hit.collider != null)
             playerHealth = hit.transform.GetComponent<FG_Health>();
 
         return hit.collider != null;
     }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(boxCollider.bounds.center + transform.right * range * transform.localScale.x * colliderDistance,
+        Gizmos.DrawWireCube(
+            boxCollider.bounds.center + transform.right * range * transform.localScale.x * colliderDistance,
             new Vector3(boxCollider.bounds.size.x * range, boxCollider.bounds.size.y, boxCollider.bounds.size.z));
     }
 
@@ -78,10 +84,10 @@ public class FG_MeleeEnemyExercises : MonoBehaviour
     }
 
     protected void OnTriggerEnter2D(Collider2D collision)
-   {
-      if (collision.CompareTag("Player"))
-      {
-         gameManager.ReduceHealth();
-      }
-   }
+    {
+        if (collision.CompareTag("Player"))
+        {
+            gameManager.ReduceHealth();
+        }
+    }
 }

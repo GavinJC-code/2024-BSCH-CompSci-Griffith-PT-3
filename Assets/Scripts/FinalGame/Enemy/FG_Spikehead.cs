@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 using UnityEngine;
 
 public class FG_Spikehead : FG_EnemyDamage
 {
-    [Header("SpikeHead Attributes")]
-    [SerializeField] private float speed;
+    [Header("SpikeHead Attributes")] [SerializeField]
+    private float speed;
+
     [SerializeField] private float range;
     [SerializeField] private float checkDelay;
     [SerializeField] private LayerMask playerLayer;
@@ -20,6 +20,7 @@ public class FG_Spikehead : FG_EnemyDamage
     {
         Stop();
     }
+
     private void Update()
     {
         //Move spikehead to destination only if attacking
@@ -32,6 +33,7 @@ public class FG_Spikehead : FG_EnemyDamage
                 CheckForPlayer();
         }
     }
+
     private void CheckForPlayer()
     {
         CalculateDirections();
@@ -50,13 +52,15 @@ public class FG_Spikehead : FG_EnemyDamage
             }
         }
     }
+
     private void CalculateDirections()
     {
         //directions[0] = transform.right * range; //Right direction
         // directions[1] = -transform.right * range; //Left direction
         // directions[2] = transform.up * range; //Up direction
-         directions[3] = -transform.up * range; //Down direction
+        directions[3] = -transform.up * range; //Down direction
     }
+
     private void Stop()
     {
         destination = transform.position; //Set destination as current position so it doesn't move

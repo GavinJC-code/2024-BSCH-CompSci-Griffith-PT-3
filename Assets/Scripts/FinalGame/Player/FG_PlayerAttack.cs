@@ -21,25 +21,27 @@ public class FG_PlayerAttack : MonoBehaviour
 
     private void Update()
     {
-      
-        if ((Input.GetMouseButtonDown(0) || Input.GetKey(KeyCode.LeftShift)) && cooldownTimer > attackCooldown && playerMovement.canAttack())
+        if ((Input.GetMouseButtonDown(0) || Input.GetKey(KeyCode.LeftShift)) && cooldownTimer > attackCooldown &&
+            playerMovement.canAttack())
             Attack();
 
         cooldownTimer += Time.deltaTime;
     }
+
     private void Attack()
     {
         anim.SetTrigger("Attack");
         cooldownTimer = 0;
 
         int fireballIndex = FindFireball();
-        if (fireballIndex == -1) return; 
+        if (fireballIndex == -1) return;
         fireballs[fireballIndex].transform.position = firePoint.position;
         float direction = playerMovement.FacingDirection;
         // debug log the direction float
         Debug.Log($"Direction float from PlayerAttack is {direction}");
         fireballs[fireballIndex].GetComponent<FG_Projectile>().SetDirection(direction);
     }
+
     private int FindFireball()
     {
         for (int i = 0; i < fireballs.Length; i++)

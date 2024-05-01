@@ -10,7 +10,7 @@ using UnityEngine;
 
 public class FG_GameManager : MonoBehaviour
 {
- 
+    private bool gameActive = false;
     public float score =0;
     public Transform spawnPoint;
     private void Awake()
@@ -22,6 +22,8 @@ public class FG_GameManager : MonoBehaviour
     void Start()
     {
         spawnPoint = GameObject.FindGameObjectWithTag("SpawnPoint").transform;
+        Time.timeScale = 0;
+        DeactivatePauseScreen();
         //find the Canvas and its child Panel and set it to false
     
 
@@ -35,10 +37,11 @@ public class FG_GameManager : MonoBehaviour
                 DeactivateStartScreen();
             }
 
-       //if (Input.GetKeyDown(KeyCode.Escape))
-       // {
-        //    ActivateEndScreen();
-       // }
+       if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            DeactivatePauseScreen();
+            SetGameActive(!gameActive);
+        }
     }
 
     public void AddScore(float scoreToAdd)
@@ -49,9 +52,16 @@ public class FG_GameManager : MonoBehaviour
         score = 0;
     }
 
+    // if gameActive is false, the game should be paused
+    public void SetGameActive(bool active)
+    {
+        gameActive = active;
+        Time.timeScale = active ? 1 : 0;
+    }
 
     void DeactivateStartScreen()
     {
+        SetGameActive(true);
         // Find the ScreensCanvas GameObject
         GameObject screensCanvas = GameObject.Find("ScreensCanvas");
 
@@ -70,6 +80,30 @@ public class FG_GameManager : MonoBehaviour
         else
         {
             Debug.LogError("ScreensCanvas not found in the scene.");
+        }
+    }
+
+    void DeactivatePauseScreen()
+    {
+        
+        // Find the ScreensCanvas GameObject
+        GameObject pauseCanvas = GameObject.Find("PauseCanvas");
+
+        // Check if the ScreensCanvas is found
+        if (pauseCanvas != null)
+        {
+            // Get all child components, but only activate those that are inactive
+            foreach (Transform child in pauseCanvas.transform)
+            {
+                // if (!child.gameObject.activeSelf)
+                // {
+                    child.gameObject.SetActive(!child.gameObject.activeSelf);
+                // }
+            }
+        }
+        else
+        {
+            Debug.LogError("PausesCanvas not found in the scene.");
         }
     }
 

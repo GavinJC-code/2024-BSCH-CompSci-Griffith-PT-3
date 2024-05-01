@@ -9,6 +9,7 @@ public class FG_GameUI : MonoBehaviour
 
 
     public FG_GameManager gameManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +20,5 @@ public class FG_GameUI : MonoBehaviour
     void Update()
     {
         scoreText.text = "Score: " + gameManager.score;
-
     }
 }

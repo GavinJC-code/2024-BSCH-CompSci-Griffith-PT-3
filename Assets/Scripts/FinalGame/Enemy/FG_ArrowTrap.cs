@@ -13,9 +13,10 @@ public class FG_ArrowTrap : MonoBehaviour
     {
         cooldownTimer = 0;
 
-       arrows[FindArrows()].transform.position = firePoint.position;
-       arrows[FindArrows()].GetComponent<FG_EnemyProjectile>().ActivateProjectile();
+        arrows[FindArrows()].transform.position = firePoint.position;
+        arrows[FindArrows()].GetComponent<FG_EnemyProjectile>().ActivateProjectile();
     }
+
     private int FindArrows()
     {
         for (int i = 0; i < arrows.Length; i++)
@@ -23,8 +24,10 @@ public class FG_ArrowTrap : MonoBehaviour
             if (!arrows[i].activeInHierarchy)
                 return i;
         }
+
         return 0;
     }
+
     private void Update()
     {
         cooldownTimer += Time.deltaTime;

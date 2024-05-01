@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b67037674b9fc9341a2dbf9e7fb35b40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupValue: 20
+  pickupValue: 200
 --- !u!95 &2475853520323112598
 Animator:
   serializedVersion: 5

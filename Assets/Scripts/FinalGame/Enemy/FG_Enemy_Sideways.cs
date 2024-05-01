@@ -13,7 +13,6 @@ public class FG_Enemy_Sidewas : MonoBehaviour
 
 
     // Reference to the Panel that needs to be enabled
-   
 
 
     private void Awake()
@@ -28,7 +27,8 @@ public class FG_Enemy_Sidewas : MonoBehaviour
         {
             if (transform.position.x > leftEdge)
             {
-                transform.position = new Vector3(transform.position.x - speed * Time.deltaTime, transform.position.y, transform.position.z);
+                transform.position = new Vector3(transform.position.x - speed * Time.deltaTime, transform.position.y,
+                    transform.position.z);
             }
             else
                 movingLeft = false;
@@ -37,7 +37,8 @@ public class FG_Enemy_Sidewas : MonoBehaviour
         {
             if (transform.position.x < rightEdge)
             {
-                transform.position = new Vector3(transform.position.x + speed * Time.deltaTime, transform.position.y, transform.position.z);
+                transform.position = new Vector3(transform.position.x + speed * Time.deltaTime, transform.position.y,
+                    transform.position.z);
             }
             else
                 movingLeft = true;
@@ -45,14 +46,12 @@ public class FG_Enemy_Sidewas : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
-{
-    Debug.Log($"Collision detected with tag: {collision.tag}");
-
-    if (collision.tag == "Player")
     {
-        collision.GetComponent<FG_Health>().TakeDamage(damage);
-    }
-}
+        Debug.Log($"Collision detected with tag: {collision.tag}");
 
-   
+        if (collision.tag == "Player")
+        {
+            collision.GetComponent<FG_Health>().TakeDamage(damage);
+        }
+    }
 }

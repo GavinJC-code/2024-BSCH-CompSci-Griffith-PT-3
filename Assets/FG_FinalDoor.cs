@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class FG_FinalDoor : MonoBehaviour
 {
-   
     // reference the FG_GameManager
     private FG_GameManager gameManager;
 
@@ -13,6 +12,7 @@ public class FG_FinalDoor : MonoBehaviour
     {
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<FG_GameManager>();
     }
+
     // collistion detection with boxcollider2D
     private void OnTriggerEnter2D(Collider2D col)
     {
@@ -22,7 +22,6 @@ public class FG_FinalDoor : MonoBehaviour
             gameManager.ActivateEndScreen();
             // disable the player
             col.gameObject.SetActive(false);
-           
         }
     }
 }

@@ -10,15 +10,15 @@ public class FG_HealthCollectible : MonoBehaviour
     {
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<FG_GameManager>();
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
-        {   
+        {
             //gameManager.AddScore(10);
             collision.GetComponent<FG_Health>().AddHealth(healthValue); // Add health to the player
             gameObject.SetActive(false); // Disable the gameObject making it disappear
             Invoke(nameof(Reactivate), respawnTime); // Schedule reactivation
-            
         }
     }
 

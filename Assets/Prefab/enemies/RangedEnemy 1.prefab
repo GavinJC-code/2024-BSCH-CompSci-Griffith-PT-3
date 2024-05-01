@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7334196816277289206}
   - component: {fileID: 6708456340247733465}
   m_Layer: 0
-  m_Name: RangedEnemy
+  m_Name: RangedEnemy 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -132,7 +132,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 20daa800a641d9e4cae18a06630db1ef, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9811321, g: 0.45817015, b: 0.48734093, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -213,8 +213,6 @@ MonoBehaviour:
   startingHealth: 2
   iFrameDuration: 0
   numberOfFlashes: 0
-  gameManager: {fileID: 0}
-  damageCooldown: 1
 --- !u!114 &4026555491087001624
 MonoBehaviour:
   m_ObjectHideFlags: 0

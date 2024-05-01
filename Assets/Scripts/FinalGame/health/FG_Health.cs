@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class FG_Health : MonoBehaviour
 {
-    [Header ("Health")]
+    [Header("Health")]
     // Start is called before the first frame update
-    [SerializeField] private float startingHealth;
+    [SerializeField]
+    private float startingHealth;
+
     public float currentHealth { get; private set; } // get from any script but only set from this script
     private Animator anim;
     private bool isDead;
-    [Header("iFrames")]
-    [SerializeField] private float iFrameDuration;
+    [Header("iFrames")] [SerializeField] private float iFrameDuration;
     [SerializeField] private float numberOfFlashes;
     private SpriteRenderer spriteRenderer;
     public FG_GameManager gameManager;
@@ -31,7 +32,8 @@ public class FG_Health : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    public void disableCharacter(){
+    public void disableCharacter()
+    {
         gameManager.AddScore(5);
         gameObject.SetActive(false);
     }
@@ -55,10 +57,12 @@ public class FG_Health : MonoBehaviour
             if (gameObject.CompareTag("Player"))
             {
                 // Only teleport the player to the spawn point
-                Transform spawnPoint = GameObject.FindGameObjectWithTag("GameManager").GetComponent<FG_GameManager>().spawnPoint;
+                Transform spawnPoint = GameObject.FindGameObjectWithTag("GameManager").GetComponent<FG_GameManager>()
+                    .spawnPoint;
                 transform.position = spawnPoint.position;
                 Camera.main.GetComponent<FG_CameraController>().MoveToNewRoom(spawnPoint);
             }
+
             StartCoroutine(InvulnerabilityFrames());
         }
         else if (!isDead) // only execute once
@@ -66,17 +70,17 @@ public class FG_Health : MonoBehaviour
             isDead = true;
             anim.SetTrigger("die");
 
-            if(GetComponent<fg_playerMovement>() != null)
+            if (GetComponent<fg_playerMovement>() != null)
             {
                 GetComponent<fg_playerMovement>().enabled = false;
             }
 
-            if(GetComponent<FG_EnemyPatrol>() != null)
+            if (GetComponent<FG_EnemyPatrol>() != null)
             {
                 GetComponent<FG_EnemyPatrol>().enabled = false;
             }
 
-            if(GetComponent<FG_MeleeEnemy>() != null)
+            if (GetComponent<FG_MeleeEnemy>() != null)
             {
                 GetComponent<FG_MeleeEnemy>().enabled = false;
             }
@@ -98,8 +102,6 @@ public class FG_Health : MonoBehaviour
 
     private IEnumerator InvulnerabilityFrames()
     {
-
-
         Physics2D.IgnoreLayerCollision(8, 9, true); // ignore collision between player and enemy
         for (int i = 0; i < numberOfFlashes; i++)
         {
@@ -108,9 +110,9 @@ public class FG_Health : MonoBehaviour
             spriteRenderer.color = new Color(1, 1, 1, 1);
             yield return new WaitForSeconds(iFrameDuration / (numberOfFlashes * 2));
         }
+
         Physics2D.IgnoreLayerCollision(8, 9, false); // ignore collision between player and enemy 
     }
-
 
 
     // //testing damage
@@ -123,6 +125,4 @@ public class FG_Health : MonoBehaviour
     //         TakeDamage(1);
     //     }
     // }
-
-    
 }
