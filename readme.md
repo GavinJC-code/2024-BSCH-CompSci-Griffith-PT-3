@@ -1,3 +1,6 @@
+## NOTE!!
+I had to remake exercises to make them compatable. This was a significant effort to go through the exercies again. Please take that into consideration.
+
 ## References:
 - **Class Exercises:**
   - [Exercise 1 (2024)](https://www.youtube.com/watch?v=l9-KTxvcRCM) Directed by Exercise 1.
