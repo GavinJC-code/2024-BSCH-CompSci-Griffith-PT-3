@@ -19,7 +19,7 @@ public class FG_FinalDoor : MonoBehaviour
         if (col.CompareTag("Player"))
         {
             // Add score to the player
-            gameManager.ActivateEndScreen();
+            gameManager.ActivateWinScreen();
             // disable the player
             col.gameObject.SetActive(false);
         }

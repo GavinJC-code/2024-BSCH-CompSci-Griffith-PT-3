@@ -126,7 +126,30 @@ public class FG_GameManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError("ScreensCanvas not found in the scene.");
+            Debug.LogError("EndCanvas not found in the scene.");
+        }
+    }
+
+      public void ActivateWinScreen()
+    {
+        // Find the ScreensCanvas GameObject
+        GameObject winCanvas = GameObject.Find("WinCanvas");
+
+        // Check if the ScreensCanvas is found
+        if (winCanvas != null)
+        {
+            // Get all child components, but only activate those that are inactive
+            foreach (Transform child in winCanvas.transform)
+            {
+                if (!child.gameObject.activeSelf)
+                {
+                    child.gameObject.SetActive(true);
+                }
+            }
+        }
+        else
+        {
+            Debug.LogError("WinCanvas not found in the scene.");
         }
     }
    
